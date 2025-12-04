@@ -1,0 +1,94 @@
+/* ==UserStyle==
+@name           Dragon Cave - Portal for Mobile
+@namespace      https://userstyles.world/user/JustDownloadin
+@version        1.0.0
+@description    A port of the desktop-exclusive Portal theme.
+@author         Valen
+@license        MIT
+@preprocessor   stylus
+==/UserStyle== */
+
+@-moz-document domain("dragcave.net") {
+html {
+	--v2v_1k:#fff;
+	--v2v_1i: #DDD;
+	--v2v_1l: #DDD;
+	--v2v_1g: #2DB2E6;
+	--selected: #2DB2E6;
+	--v2v_7: #2DB2E6;
+	--v2v_7: rgb(48, 151, 191);
+	--v2v_1a: rgba(105,105,105,0.8);
+	--v2v_15: #2b2a33;
+	--v2v_4: #5e5f60;
+};
+
+body.mobile {
+	background: #000 url("https://s.dcave.net/p2/p2home_bg.jpg") fixed center 0 no-repeat;
+
+	/* --Header-- */
+	img._2y_3 {
+		filter: brightness(0) saturate(100%) invert(55%) sepia(48%) saturate(676%) hue-rotate(151deg) brightness(100%) contrast(94%);
+	}
+	/* --Main-- */
+	#middle {
+		padding: 10px;
+		border-radius: 6px;
+  		border: 1px solid rgba(105,105,105,0.8);
+	}
+	section, ._2x_8 {
+		background-image:
+    		linear-gradient(to top, #000, #000 0%, rgba(45, 45, 45, .5) 100%),
+    		repeating-linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0) 36px, rgba(74, 74, 74, 0.1) 36px, rgba(74, 74, 74, 0.1) 38px),
+    		repeating-linear-gradient(to right, rgba(0, 0, 0, 0),rgba(0, 0, 0, 0) 36px, rgba(74, 74, 74, 0.1) 36px, rgba(74, 74, 74, 0.1) 38px);
+  		background-attachment: fixed;
+  		background-color: transparent;
+	}
+	section {
+		outline: 1px solid var(--v2v_4)!important;
+
+		.eggs span{
+			font-weight: bold;
+		}
+		img[alt="Map"] {
+			content:url("https://s.dcave.net/cache/images/1/1d3kzt.png");
+		}
+	}
+	._8r_0 a._1p_e._1p_c[aria-disabled="true"]{
+		color: var(--v2v_1i);
+	}
+	/* --Nav bar-- */
+	._2z_0 {
+		background: #000 url("https://s.dcave.net/p2/p2home_bg.jpg") fixed center no-repeat;
+		background-size: 250px 100px;
+	}
+	._2z_5 {
+		color: var(--v2v_1g)
+	}
+	/* --Selection boxes-- */
+	._2q_0 select,
+	input[type="text"], input[type="password"], input[type="email"], input[type="search"], input[type="number"], input:not([type]) {
+		background-color: var(--v2v_15);
+	}
+	/* --Buttons-- */
+	._1p_e._1p_9._1p_b, a._1p_e:link._1p_9._1p_b, a._1p_e:visited._1p_9._1p_b {
+		border-color: rgba(68,138,165,0.8);
+	}
+	._1h_4 {
+		background: var(--v2v_7);
+	}
+	/* --View>dragon-- */
+	._6i_4 {
+		background: none!important;
+	}
+
+};
+
+/* ----------------------------------------- */
+}
+@-moz-document url-prefix("https://dragcave.net/view/") {
+	body.mobile {
+		section {
+			outline: none!important;
+		}
+	}
+}
