@@ -1,12 +1,22 @@
 /* ==UserStyle==
 @name           Dragon Cave - Portal for Mobile
 @namespace      https://userstyles.world/user/JustDownloadin
-@version        1.0.0
+@version        1.1.0
 @description    A port of the desktop-exclusive Portal theme.
 @author         Valen
 @license        MIT
 @preprocessor   stylus
-@updateURL		https://raw.githubusercontent.com/BleatBytes/DragCave---Portal-Theme-for-Mobile/main/dragcaveportalmobile.user.css
+
+@var select BGTYPE "Section background image (Experimental)" ["Simple", "Checkered"]
+
+@var checkbox NOADS	"Remove the ad container (Experimental)" 0
+
+@var checkbox NOBIOME "Remove the biome-specific background from /locations/" 0
+
+@var checkbox HGBIOME "Highlight current biome in biome list" 0
+@var color LOCATC " ↳ Background colour for current biome" rgba(48,151,191,0.8)
+@var color LOCATT " ↳ Text colour for current biome" #fff
+
 ==/UserStyle== */
 
 @-moz-document domain("dragcave.net") {
@@ -22,25 +32,41 @@ html {
 	--v2v_15: #2b2a33;
 	--v2v_4: #5e5f60;
 };
-
+	
 body.mobile {
 	background: #000 url("https://s.dcave.net/p2/p2home_bg.jpg") fixed center 0 no-repeat;
+	min-height: 100vh;
+	
+	if (NOADS == 1) {
+		main#middle ~ div {
+			display: none!important;
+		}
+	}
 
 	/* --Header-- */
 	img._2y_3 {
 		filter: brightness(0) saturate(100%) invert(55%) sepia(48%) saturate(676%) hue-rotate(151deg) brightness(100%) contrast(94%);
 	}
 	/* --Main-- */
-	#middle {
+	/*#middle {
 		padding: 10px;
 		border-radius: 6px;
   		border: 1px solid rgba(105,105,105,0.8);
+	}*/
+	if (BGTYPE=="Checkered") {
+		section, ._2x_8, ._6i_3 {
+			background-image:
+				linear-gradient(to top, #000, #000 0%, rgba(45, 45, 45, .5) 100%),
+				-moz-repeating-linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0) 36px, rgba(74, 74, 74, 0.1) 36px, rgba(74, 74, 74, 0.1) 38px),
+				-moz-repeating-linear-gradient(to right, rgba(0, 0, 0, 0),rgba(0, 0, 0, 0) 36px, rgba(74, 74, 74, 0.1) 36px, rgba(74, 74, 74, 0.1) 38px);
+		}
+	} else {
+		section, ._2x_8, ._6i_3 {
+			background-image:
+				linear-gradient(to top, #000, #000 0%, rgba(45, 45, 45, .5) 100%)
+		}
 	}
-	section, ._2x_8 {
-		background-image:
-    		linear-gradient(to top, #000, #000 0%, rgba(45, 45, 45, .5) 100%),
-    		repeating-linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0) 36px, rgba(74, 74, 74, 0.1) 36px, rgba(74, 74, 74, 0.1) 38px),
-    		repeating-linear-gradient(to right, rgba(0, 0, 0, 0),rgba(0, 0, 0, 0) 36px, rgba(74, 74, 74, 0.1) 36px, rgba(74, 74, 74, 0.1) 38px);
+	section, ._2x_8, ._6i_3 {
   		background-attachment: fixed;
   		background-color: transparent;
 	}
@@ -82,8 +108,7 @@ body.mobile {
 		background: none!important;
 	}
 
-};
-
+}
 /* ----------------------------------------- */
 }
 @-moz-document url-prefix("https://dragcave.net/view/") {
@@ -92,4 +117,22 @@ body.mobile {
 			outline: none!important;
 		}
 	}
+/* ----------------------------------------- */
+}
+@-moz-document url-prefix("https://dragcave.net/locations/") {
+
+	if (NOBIOME == 1) {
+		._o_1 header::after, ._o_c header::after, ._o_d header::after, ._o_e header::after, ._o_f header::after, ._o_g header::after, ._o_h header::after, ._o_1 #middle > h1:first-child::after, ._o_c #middle > h1:first-child::after, ._o_d #middle > h1:first-child::after, ._o_e #middle > h1:first-child::after, ._o_f #middle > h1:first-child::after, ._o_g #middle > h1:first-child::after, ._o_h #middle > h1:first-child::after {
+			background: none!important;
+		}
+	}
+	if (HGBIOME == 1) {
+		li[style="font-weight:bold"] {
+			background-color: LOCATC;
+		}
+		li[style="font-weight:bold"] > a:visited {
+			color: LOCATT;
+		}
+	}
+/* ----------------------------------------- */
 }
